@@ -683,8 +683,8 @@ test "extract and rebuild works for any compression method supported" {
     );
 
     // Test each method.
-    inline for (std.meta.fields(Method)) |method_field| {
-        const method: Method = @enumFromInt(method_field.value);
+    inline for (@typeInfo(Method).@"enum".field_values) |field_value| {
+        const method: Method = @enumFromInt(field_value);
 
         if (method == Method.BitPackedQuantization or
             method == Method.SerfQT or
